@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация и контакты • SWT‖RAZE CUP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<body>
+
+<header class="header">
+    <div class="container header-inner">
+        <div class="logo">
+            <div class="logo-title">SWT‖RAZE CUP</div>
+            <div class="logo-subtitle">онлайн-турнир по Counter‑Strike 2</div>
+        </div>
+        <nav class="nav">
+            <a href="index.html">главная</a>
+            <a href="format-rules.html">формат и правила</a>
+            <a href="teams.html">Команды</a>
+            <a href="schedule.html">расписание и результаты</a>
+            <a href="register.html" class="active">регистрация</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+    <!-- КАК ПОДАТЬ ЗАЯВКУ -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-title section-title-accent">регистрация команды</div>
+                <div class="section-subtitle">
+                    Перед регистрацией убедитесь, что вся команда ознакомилась с форматом турнира и правилами.
+                    Капитан подаёт заявку от имени всего состава.
+                </div>
+            </div>
+
+            <div class="text-block">
+                <p>
+                    Для участия в SWT‖RAZE CUP каждая команда должна подать заявку в установленный срок. Регистрация
+                    осуществляется через капитана: именно он заполняет форму, отвечает на вопросы организаторов и
+                    держит связь с администрацией турнира. Важно, чтобы указанные контакты были актуальными, а капитан
+                    действительно находился в доступе в дни проведения матчей.
+                </p>
+                <p>
+                    В заявке необходимо указать название команды, тэг, полный список игроков, основного капитана,
+                    при необходимости — заместителя, а также ссылки на профили Steam. Дополнительно может запрашиваться
+                    контактный Discord или Telegram, через который будет вестись оперативная коммуникация перед матчами
+                    и в день игр. Все данные нужны только для организации турнира и наведения порядка в сетке.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ЧТО ДОЛЖНО БЫТЬ В ЗАЯВКЕ -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-title section-title-accent">данные для регистрации</div>
+                <div class="section-subtitle">
+                    Чем точнее и аккуратнее заполнена заявка, тем проще и быстрее организаторам будет подтвердить
+                    участие вашей команды.
+                </div>
+            </div>
+
+            <div class="text-block">
+                <p>
+                    Стандартная заявка команды на SWT‖RAZE CUP должна содержать:
+                </p>
+                <p>
+                    • Название команды и короткий тэг, который будет использоваться в расписании и при анонсах матчей.  
+                    • Полный состав игроков: ники, роли (по желанию) и ссылки на профили Steam.  
+                    • Ник и контакты капитана: Discord, Telegram или другой канал, указанный в условиях турнира.  
+                    • При необходимости — ник и контакты заместителя капитана, который сможет подхватить коммуникацию
+                    в случае отсутствия основного.  
+                    • Подтверждение, что все участники ознакомились с регламентом и согласны ему следовать.
+                </p>
+                <p>
+                    Неполные заявки могут быть возвращены на доработку или отклонены, если после напоминания капитан
+                    так и не предоставил недостающую информацию. Аккуратная регистрация — первый шаг к тому, чтобы
+                    турнир прошёл гладко и без лишних вопросов к составу.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПРИМЕР ПРОСТОЙ ФОРМЫ (ФРОНТ) -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-title section-title-accent">пример заявки</div>
+                <div class="section-subtitle">
+                   
+                </div>
+            </div>
+
+            <div class="text-block">
+                <p>
+                    
+                </p>
+            </div>
+
+            <div class="hero-card" style="margin-top:16px;">
+                <div class="hero-card-title">форма заявки (демо)</div>
+                <form>
+                    <ul class="hero-card-list">
+                        <li>
+                            <strong>Название команды:</strong><br>
+                            <input type="text" placeholder="Например: SWT Raze" style="width:100%;margin-top:4px;padding:6px 8px;border-radius:6px;border:1px solid rgba(255,60,60,0.6);background:#050506;color:#f5f5f5;">
+                        </li>
+                        <li>
+                            <strong>Тэг команды:</strong><br>
+                            <input type="text" placeholder="Например: SWT" style="width:100%;margin-top:4px;padding:6px 8px;border-radius:6px;border:1px solid rgba(255,60,60,0.6);background:#050506;color:#f5f5f5;">
+                        </li>
+                        <li>
+                            <strong>Ник капитана и контакт:</strong><br>
+                            <input type="text" placeholder="Капитан • Discord / Telegram" style="width:100%;margin-top:4px;padding:6px 8px;border-radius:6px;border:1px solid rgba(255,60,60,0.6);background:#050506;color:#f5f5f5;">
+                        </li>
+                        <li>
+                            <strong>Состав игроков (ники):</strong><br>
+                            <textarea placeholder="Игрок 1 — &#10;Игрок 2 — &#10;..." style="width:100%;margin-top:4px;padding:6px 8px;border-radius:6px;border:1px solid rgba(255,60,60,0.6);background:#050506;color:#f5f5f5;min-height:90px;"></textarea>
+                        </li>
+                        <li>
+                            <strong>Комментарий для организаторов:</strong><br>
+                            <textarea placeholder="Например: пожелания по времени матчей, особенности состава и т.п." style="width:100%;margin-top:4px;padding:6px 8px;border-radius:6px;border:1px solid rgba(255,60,60,0.6);background:#050506;color:#f5f5f5;min-height:70px;"></textarea>
+                        </li>
+                    </ul>
+                    <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
+                        <button type="button" class="btn">отправить </button>
+                        <span style="font-size:12px;color:#bbbbbb;"></span>
+                    </div>
+                    ЕСЛИ ОТПРАВКА НЕ РАБОТАЕТ ТО НАПИШИТЕ В ТГ НИЖЕ 
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- КОНТАКТЫ ОРГАНИЗАТОРОВ -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-title section-title-accent">контакты организаторов:
+                                       тг Главный админ(@Danyaoversize)
+                     Старший админ (@Hgff54ff) Младший Админ (@Sigmatec1) 
+                </div>
+                <div class="section-subtitle">
+                    Связь по вопросам регламента, расписания, спорных ситуаций и технических проблем ведётся через
+                    указанные каналы.
+                </div>
+            </div>
+
+            <div class="text-block">
+                <p>
+                    Для оперативной коммуникации используются заранее выбранные платформы: чаще всего это Discord
+                    или Telegram. На этапе регистрации капитаны получают актуальные ссылки на сервер или чат,
+                    где публикуются важные объявления, уточнения по расписанию и разбор спорных моментов.
+                </p>
+                <p>
+                    Рекомендуется, чтобы хотя бы капитан и один из игроков команды постоянно имели доступ к этим
+                    каналам связи. Это поможет не пропустить изменения по времени матчей, технические объявления
+                    и общие новости SWT‖RAZE CUP. Если команда игнорирует информационные площадки, ответственность
+                    за пропуск обновлений ложится на неё.
+                </p>
+                <p>
+                    
+                </p>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="footer">
+    <div class="container">
+         SWT‖RAZE CUP.
+    </div>
+</footer>
+ 
+</body>
+</html>
+```
+
