@@ -718,46 +718,47 @@
     <div class="container"></div>
 </footer>
 
-<!-- Скрипт для пикемов -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    // перетаскивать можно: команды из 1/4 и ЗАПОЛНЕННЫЕ слоты 1/2
-let draggableTeams = document.querySelectorAll('.round-qf .team[draggable="true"], .round-sf .team.drop-slot[draggable="true"]');
-const dropSlots = document.querySelectorAll('.drop-slot');
-
     const pickemList = document.querySelector('.pickem-list');
+    let draggedElement = null;
 
-    let dragged = null;
-
-    // клики в 1/4 по-прежнему подсвечивают выбранную команду
-    const qfMatches = document.querySelectorAll('.round-qf .match');
-    qfMatches.forEach(match => {
-      const teams = match.querySelectorAll('.team[draggable="true"]');
-      teams.forEach(team => {
-        team.addEventListener('click', () => {
-          teams.forEach(t => t.classList.remove('pickem-picked'));
-          team.classList.add('pickem-picked');
-          updatePickemSummary();
-        });
+    // === КЛИКИ НА КОМАНДЫ В 1/4 ===
+    document.querySelectorAll('.round-qf .team').forEach(team => {
+      team.addEventListener('click', () => {
+        const parent = team.parentElement;
+        parent.querySelectorAll('.team').forEach(t => t.classList.remove('pickem-picked'));
+        team.classList.add('pickem-picked');
+        updateList();
       });
     });
 
-    // DRAG & DROP для 1/2 и финала
-    draggableTeams.forEach(team => {
-      team.addEventListener('dragstart', e => {
-        dragged = team;
-        team.classList.add('dragging');
+    // === DRAG START ===
+    document.addEventListener('dragstart', (e) => {
+      if (e.target.classList.contains('team')) {
+        draggedElement = e.target;
+        e.target.classList.add('dragging');
         e.dataTransfer.effectAllowed = 'move';
-        e.dataTransfer.setData('text/plain', team.textContent.trim());
-      });
-      team.addEventListener('dragend', () => {
-        dragged = null;
-        team.classList.remove('dragging');
-      });
+      }
     });
 
-    dropSlots.forEach(slot => {
-      slot.addEventListener('dragover', e => {
+    // === DRAG END ===
+    document.addEventListener('dragend', (e) => {
+      if (e.target.classList.contains('team')) {
+        e.target.classList.remove('dragging');
+        draggedElement = null;
+      }
+    });
+
+    // === DROP ZONES ===
+    const allSlots = [
+      ...document.querySelectorAll('.round-sf .team'),
+      ...document.querySelectorAll('.round-final .team'),
+      ...document.querySelectorAll('.round-champion .team')
+    ];
+
+    allSlots.forEach(slot => {
+      slot.addEventListener('dragover', (e) => {
         e.preventDefault();
         e.dataTransfer.dropEffect = 'move';
         slot.classList.add('drop-hover');
@@ -767,54 +768,66 @@ const dropSlots = document.querySelectorAll('.drop-slot');
         slot.classList.remove('drop-hover');
       });
 
-      slot.addEventListener('drop', e => {
+      slot.addEventListener('drop', (e) => {
         e.preventDefault();
         slot.classList.remove('drop-hover');
-        if (!dragged) return;
 
-        // записываем название команды в слот
-        slot.textContent = dragged.textContent.trim();
-        slot.classList.add('pickem-picked');
-        updatePickemSummary();
+        if (draggedElement) {
+          const name = draggedElement.textContent.trim();
+          slot.textContent = name;
+          slot.classList.add('pickem-picked');
+          slot.setAttribute('draggable', 'true');
+          updateList();
+        }
       });
     });
 
-    function updatePickemSummary() {
-      if (!pickemList) return;
+    // === UPDATE LIST ===
+    function updateList() {
       pickemList.innerHTML = '';
 
-      const picks = [];
-
-      // 1/4: выбранные кликом
+      // 1/4
       document.querySelectorAll('.round-qf .team.pickem-picked').forEach(team => {
-        picks.push('1/4: ' + team.textContent.trim());
-      });
-
-      // 1/2 и финал: слоты с текстом
-      const sfSlots = document.querySelectorAll('.round-sf .team.pickem-picked');
-      sfSlots.forEach((slot, idx) => {
-        picks.push('1/2: ' + slot.textContent.trim());
-      });
-
-      const finalSlots = document.querySelectorAll('.round-final .team.pickem-picked');
-      finalSlots.forEach((slot, idx) => {
-        picks.push('Финал: ' + slot.textContent.trim());
-      });
-
-      picks.forEach(text => {
         const li = document.createElement('li');
-        li.textContent = text;
+        li.textContent = '1/4: ' + team.textContent.trim();
         pickemList.appendChild(li);
       });
-      // чемпион
-const championSlot = document.querySelector('.round-champion .team.pickem-picked');
-if (championSlot) {
-  picks.push({ stage: 'Champion', name: championSlot.textContent.trim() });
-}
 
+      // 1/2
+      document.querySelectorAll('.round-sf .team.pickem-picked').forEach(slot => {
+        const name = slot.textContent.trim();
+        if (name && !name.includes('Слот')) {
+          const li = document.createElement('li');
+          li.textContent = '1/2: ' + name;
+          pickemList.appendChild(li);
+        }
+      });
+
+      // Финал
+      document.querySelectorAll('.round-final .team.pickem-picked').forEach(slot => {
+        const name = slot.textContent.trim();
+        if (name && !name.includes('Победитель')) {
+          const li = document.createElement('li');
+          li.textContent = 'Финал: ' + name;
+          pickemList.appendChild(li);
+        }
+      });
+
+      // Champion
+      document.querySelectorAll('.round-champion .team.pickem-picked').forEach(slot => {
+        const name = slot.textContent.trim();
+        if (name && !name.includes('Перетащи')) {
+          const li = document.createElement('li');
+          li.textContent = 'Champion: ' + name;
+          pickemList.appendChild(li);
+        }
+      });
     }
   });
 </script>
+
+
+
 <footer class="footer">
     <div class="container">
         SWT‖RAZE CUP. MADE BubL1c
